@@ -29,11 +29,3 @@ function closeModal2() {
     overlay.style.display = "none";
 }
 
-// var btnRecherche = document.getElementById('searchbutton');
-// var recherche = document.getElementById('recherchemult');
-
-// btnRecherche.addEventListener('click', openSearch);
-
-// function openSearch() {
-//     recherche.style.display = "block";
-// }

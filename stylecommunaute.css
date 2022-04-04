@@ -1,0 +1,105 @@
+
+header {
+    display: flex;
+    width: 100%;
+    height: 10vh;
+    justify-content:space-between;
+    align-items: center;
+    background: #110913;
+}
+
+/*---------------------------------------------- IMAGES -------------------------------------------------*/
+
+#logoPlayMe {
+    height: 80%;
+    object-fit: contain;
+    padding-left: 3vw;
+}
+
+#logoInbox {
+    height: 5vh;
+    width: 5vw;
+    object-fit: contain;
+    flood-color: aliceblue;
+}
+
+#logoProfile {
+    height: 5vh;
+    width: 5vw;
+    object-fit: contain;
+    
+}
+
+
+
+/*---------------------------------------------- IMAGES -------------------------------------------------*/
+
+
+body {
+    background: linear-gradient(180deg, #474145 100%, #A8B1FF 100%);
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+#fixe {
+    display: flex;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+}
+
+#gauche {
+    height: 100vh;
+    width: 10%;
+    
+}
+
+#navgauche {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #110913;
+    color: rgb(224, 224, 224);
+    gap: 20px;
+}
+
+#currentmusic {
+    background-color: #110913;;
+    display: flex;
+    height: 35%;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#droite {
+    width: 90%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    background-color: rgb(142, 142, 179);
+    font-family: 'Poppins', sans-serif;
+}
+
+#discover {
+    display: flex;
+    color: azure;
+    background-color: aliceblue;
+    height: 30vh;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction:row;
+    background-image: url('musique.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.previousnext {
+    height: 40%;
+}

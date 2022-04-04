@@ -54,12 +54,18 @@ if ($_POST) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleAccueil.css">
     <title>Page d'Accueil</title>
 </head>
 <body>
 
-        <div class="inscription_connexion">
+<header>
+    <img src="Images/logoplayme.png" alt="logoPlayMe" id="logoPlayMe"> 
+    <div>
+        <img src="Images/logoMessagerie2.png" alt="logoInbox" id="logoInbox">
+        <img src="Images/logoProfile2.png" alt="logoProfile" id="logoProfile">
+    </div>
+    <div class="inscription_connexion">
             <input id="inscription" type="submit" value="S'inscrire">
             <input id="connexion" type="submit" value="Se connecter">
         </div>
@@ -69,12 +75,15 @@ if ($_POST) {
             <input id="recherchemult" type="search" name="recherche" placeholder="Rechercher" autocomplete="off">
             <input id="searchbutton" type="submit" name="donneerecherche" value="Rechercher">
         </div>
-    </form>
+        </form>
 
         <div class="Liens-header">
-            <a class="communaute" href="pagecommunaute.html">Communauté</a>
-            <a class="playlist" href="pageplaylist.html">Playlist / Bibliothèque</a>
+            <a class="communaute" href="pagecommunaute.php">Communauté</a>
+            <a class="playlist" href="pageplaylist.php">Playlist / Bibliothèque</a>
+            <a class="messagerie" href="messagerie.php">Messagerie</a>
         </div>
+</header>
+
 
         <form method="post">
     <div id="overlay" class="overlay">
@@ -103,46 +112,77 @@ if ($_POST) {
 <div id="overlay3">
 <section class="afficher_utilisateur">
     <?php 
-if (!empty($_GET['recherche'])) {
-            $allusers = $pdo->query("SELECT * FROM abonnes ORDER BY prenom DESC");
-            $allmusics = $pdo->query("SELECT * FROM morceaux");
-            $allartists = $pdo->query("SELECT * FROM artistes");
+
+        $allusers = $pdo->query("SELECT * FROM abonnes ORDER BY prenom DESC");
+        $allmusics = $pdo->query("SELECT * FROM morceaux");
+        $allartists = $pdo->query("SELECT * FROM artistes");
+
+
+        if (isset($_GET['recherche'])) {
             $recherche = htmlspecialchars($_GET['recherche']);
             $allusers = $pdo->query("SELECT prenom, nom FROM abonnes WHERE prenom LIKE '%".$recherche."%'");
             $allmusics = $pdo->query("SELECT titre FROM morceaux WHERE titre LIKE '%".$recherche."%'");
             $allartists = $pdo->query("SELECT nom FROM artistes WHERE nom LIKE '%".$recherche."%'");
-        } else if ($allusers->rowCount() > 0 XOR $allmusics->rowCount() > 0 XOR $allartists->rowCount() > 0)) {
+            if ($allusers->rowCount() > 0 XOR $allmusics->rowCount() > 0 XOR $allartists->rowCount() > 0) {
+                while ($user = $allusers->fetch() XOR $titrer = $allmusics->fetch() XOR $artister = $allartists->fetch()) {
+                    ?>
+                    <div id="affichage_user"><p><?= $user['prenom'], $user['nom']; ?></p></div>
+                    <div id="affichage_musique"><p><?= $titrer['titre']; ?></p></div>
+                    <div id="affichage_artiste"><p><?= $artister['nom']; ?></p></div>
+                    <?php
+                }}        
+        } elseif (empty($_POST['recherche'])) {
             ?>
-            <div id="affichage_user"><p><?= $user['prenom']; ?></p></div>
-            <div id="affichage_musique"><p><?= $titrer['titre']; ?></p></div>
-            <div id="affichage_artiste"><p><?= $artister['nom']; ?></p></div>
-            <?php
-        // while ($user = $allusers->fetch() XOR $titrer = $allmusics->fetch() XOR $artister = $allartists->fetch())
-         { else {
+            <p></p>
+            <?php    
+        } else {
         ?>
         <p>Aucun utilisateur, morceau ou artiste trouvé</p>
         <?php
-    }
-  
+        }
     ?>
 </section>
-</div>
+    </div>
+    <section id="fixe">
+        <section id="gauche"></div>
+            <div id="navgauche">
+                <p>ACCUEIL</p>
+                <p>COMMUNAUTE</p>
+                <p>PLAYLISTES</p>
+            </div>   
 
-    <div class="nouveautes">
-        <h1>Nouveautés</h1>
-        <img src="/Images/pexels-photo-3394250.jpeg" width="150px" height="150px" alt="Cover 1">
-        <img src="/Images/" alt="Cover 2">
-        <img src="/Images/3.jpeg" alt="Cover 3">
-        <img src="/Images/4.jpeg" alt="Cover 4">
-        </div>
+            <div id="currentmusic">
+                <img src="Images/img1.jpg" alt="currentmusicimg">
+                <div id="currentmusicbarre">
+                    <img src="Images/boutonPrevious2.png" alt="logoprevious" class="previousnext">
+                    <img src="Images/boutonPlay2.png" alt="logoplay" id="logoplay">
+                    <img src="Images/boutonNext2.png" alt="logonext" class="previousnext">
+                </div>
+            </div>
 
-        <div class="suggestions">
-            <h1>Suggestions</h1>
-            <img src="/Images/1.jpeg" alt="Cover 1">
-            <img src="/Images/2.jpeg" alt="Cover 2">
-            <img src="/Images/3.jpeg" alt="Cover 3">
-            <img src="/Images/4.jpeg" alt="Cover 4">
-        </div>
+        </section>
+        
+        <section id="droite">
+
+            <p class="titrepartie">NOUVEAUTES</p>
+
+            <div id="nouveautes">
+                <div class="nouveautes1"></div>
+                <div class="nouveautes1"></div>
+                <div class="nouveautes1"></div>
+                <div class="nouveautes1"></div>
+            </div>
+
+            <p class="titrepartie">SUGGESTIONS</p>
+
+            <div id="suggestions">
+                <div class="suggestions1"></div>
+                <div class="suggestions1"></div>
+                <div class="suggestions1"></div>
+                <div class="suggestions1"></div>
+            </div>
+            
+    </section>
 
         <script src="js.js"></script>
 </body>
