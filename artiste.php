@@ -22,6 +22,45 @@ include('init.php');
         <img src="Images/logoMessagerie2.png" alt="logoInbox" id="logoInbox">
         <img src="Images/logoProfile2.png" alt="logoProfile" id="logoProfile">
     </div>
+    <form method="get">
+        <div class="rubriques">
+            <input id="recherchemult" type="text" name="recherche" placeholder="Rechercher" autocomplete="off">
+            <input id="searchbutton" type="submit" name="donneerecherche" value="Rechercher">
+        </div>
+        </form>
+
+        <div id="overlay3">
+<section class="afficher_utilisateur">
+    <?php 
+
+        $allusers = $pdo->query("SELECT * FROM abonnes ORDER BY prenom DESC");
+        $allmusics = $pdo->query("SELECT * FROM morceaux");
+        $allartists = $pdo->query("SELECT * FROM artistes");
+
+
+        if (isset($_GET['recherche'])) {
+            $recherche = htmlspecialchars($_GET['recherche']);
+            $allusers = $pdo->query("SELECT prenom, nom FROM abonnes WHERE prenom LIKE '%".$recherche."%'");
+            $allmusics = $pdo->query("SELECT titre FROM morceaux WHERE titre LIKE '%".$recherche."%'");
+            $allartists = $pdo->query("SELECT nom FROM artistes WHERE nom LIKE '%".$recherche."%'");
+            if ($allusers->rowCount() > 0 XOR $allmusics->rowCount() > 0 XOR $allartists->rowCount() > 0) {
+                while ($user = $allusers->fetch() XOR $titrer = $allmusics->fetch() XOR $artister = $allartists->fetch()) {
+                    ?>
+                    <a href="pagepersonnel.php"><div id="affichage_user"><p><?= $user['prenom'], $user['nom']; ?></p></div></a>
+                    <a href="playlist.php"><div id="affichage_musique"><p><?= $titrer['titre']; ?></p></div>
+                    <a href="artiste.php"><div id="affichage_artiste"><p><?= $artister['nom']; ?></p></div></a>
+                    <?php
+                }}        
+        } elseif (empty($_POST['recherche'])) {
+            ?>
+            <p></p>
+            <?php    
+        } else {
+        ?>
+        <p>Aucun utilisateur, morceau ou artiste trouvé</p>
+        <?php
+        }
+    ?>
 </header>
 
 <body>

@@ -2,6 +2,121 @@ body {
     background-color: yellow;
 }
 
+
 header {
-    background-color: azure;
+    display: flex;
+    width: 100%;
+    height: 10vh;
+    justify-content:space-between;
+    align-items: center;
+    background: #110913;
+}
+
+/*---------------------------------------------- IMAGES -------------------------------------------------*/
+
+#logoPlayMe {
+    height: 80%;
+    object-fit: contain;
+    padding-left: 3vw;
+}
+
+#logoInbox {
+    height: 5vh;
+    width: 5vw;
+    object-fit: contain;
+    flood-color: aliceblue;
+}
+
+#logoProfile {
+    height: 5vh;
+    width: 5vw;
+    object-fit: contain;
+    
+}
+
+.previousnext {
+    height: 6vh;
+    
+}
+
+#logoplay {
+    height: 7vh;
+    object-fit: contain;
+}
+
+/*---------------------------------------------- IMAGES -------------------------------------------------*/
+
+
+body {
+    background: linear-gradient(180deg, #474145 100%, #A8B1FF 100%);
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+#fixe {
+    display: flex;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+}
+
+#gauche {
+    height: 95vh;
+    width: 10%;
+    
+}
+
+#navgauche {
+    display: flex;
+    height: 60%;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #110913;
+    color: rgb(224, 224, 224);
+    gap: 20px;
+}
+
+#currentmusic {
+    background-color: #110913;;
+    display: flex;
+    height: 35%;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+#droite {
+    width: 90%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    background-color: rgb(142, 142, 179);
+    font-family: 'Poppins', sans-serif;
+}
+
+form {
+    padding-left: 50px;
+    width: fit-content;
+    align-items: center; 
+}
+
+.titrepartie {
+    padding-left: 30px;
+}
+
+input {
+    height: 12vh;
+    border: 1px solid;
+    border-radius: 15px 15px 15px 0px ;
+}
+
+button {
+    border: 1px solid;
+    border-radius: 0px 0px 5px 5px ;
 }

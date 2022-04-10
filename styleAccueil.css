@@ -127,19 +127,17 @@ form {
 }
 
 #nouveautes {
-    width: 100%;
+    width: 100vh;
     height: 20vh;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-
 }
 
 .nouveautes1 {
     height: 100%;
     width: 15vw;
     background-color: aliceblue;
-    
 }
 
 #suggestions {
@@ -148,13 +146,11 @@ form {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-
 }
 
 .suggestions1 {
     height: 100%;
     width: 15vw;
     background-color: aliceblue;
-    
 }
 

@@ -15,11 +15,11 @@ include('init.php');
 
 <body>
     <header>
-        <div class="Liens-header">
-            <a class="acceuil" href="pageacceuil.php">Retour Accueil</a>
-            <a class="communaute" href="pagecommunaute.php">Communauté</a>
-        </div>
-    </header>
+    <img src="Images/logoplayme.png" alt="logoPlayMe" id="logoPlayMe"> 
+    <div>
+        <a href="messagerie.php"><img src="Images/logoMessagerie2.png" alt="logoInbox" id="logoInbox"></a>
+        <a href="pagepersonnel.php"><img src="Images/logoProfile2.png" alt="logoProfile" id="logoProfile"></a>
+    </div>
     
     <form method="get">
         <div class="rubriques">
@@ -27,6 +27,7 @@ include('init.php');
             <input id="searchbutton" type="submit" name="donneerecherche" value="Rechercher">
         </div>
         </form>
+</header>
 
         <div id="overlay3">
 <section class="afficher_utilisateur">

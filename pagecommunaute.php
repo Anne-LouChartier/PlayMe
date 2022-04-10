@@ -13,16 +13,16 @@ include('init.php');
 </head>
 <body>
     <header>
-    <img src="logoplayme.png" alt="logoPlayMe" id="logoPlayMe"> 
+    <img src="Images/logoplayme.png" alt="logoPlayMe" id="logoPlayMe"> 
     <div>
         <img src="Images/logoMessagerie2.png" alt="logoInbox" id="logoInbox">
         <img src="Images/logoProfile2.png" alt="logoProfile" id="logoProfile">
     </div>
-        <div class="Liens-header">
+        <!-- <div class="Liens-header">
                     <a class="acceuil" href="pageacceuil.php">Acceuil</a>
                     <a class="playlist" href="pageplaylist.php">Playlist / Bibliothèque</a>
                     <a class="messagerie" href="messagerie.php">Messagerie</a>
-        </div>
+        </div> -->
         <form method="get">
         <div class="rubriques">
             <input id="recherchemult" type="text" name="recherche" placeholder="Rechercher" autocomplete="off">
@@ -48,9 +48,9 @@ include('init.php');
             if ($allusers->rowCount() > 0 XOR $allmusics->rowCount() > 0 XOR $allartists->rowCount() > 0) {
                 while ($user = $allusers->fetch() XOR $titrer = $allmusics->fetch() XOR $artister = $allartists->fetch()) {
                     ?>
-                    <div id="affichage_user"><p><?= $user['prenom'], $user['nom']; ?></p></div>
-                    <div id="affichage_musique"><p><?= $titrer['titre']; ?></p></div>
-                    <a href="kanyewest.php"><div id="affichage_artiste"><p><?= $artister['nom']; ?></p></div></a>
+                    <a href="pagepersonnel.php"><div id="affichage_user"><p><?= $user['prenom'], $user['nom']; ?></p></div></a>
+                    <a href="playlist.php"><div id="affichage_musique"><p><?= $titrer['titre']; ?></p></div>
+                    <a href="artiste.php"><div id="affichage_artiste"><p><?= $artister['nom']; ?></p></div></a>
                     <?php
                 }}        
         } elseif (empty($_POST['recherche'])) {
@@ -68,9 +68,9 @@ include('init.php');
     <section id="fixe">
         <section id="gauche"></div>
             <div id="navgauche">
-                <p>ACCUEIL</p>
-                <p>COMMUNAUTE</p>
-                <p>PLAYLISTES</p>
+                <a href="pageacceuil/php"><p>ACCUEIL</p></a>
+                <a href="pagecommunaute.php"><p>COMMUNAUTE</p></a>
+                <a href="pageplaylist.php"><p>PLAYLISTES</p></a>
             </div>   
         </section>
         
@@ -89,7 +89,6 @@ include('init.php');
 
             </div>
 
-
             <p class="titrepartie">NOUVEAUTES</p>
 
             <div id="nouveautes">
@@ -102,10 +101,67 @@ include('init.php');
             <p class="titrepartie">SUGGESTIONS</p>
 
             <div id="suggestions">
+
+                <div class="suggestions1">
+    <form method="post" class="add-commentaire">
+        <textarea name="content" id="content" placeholder="Laissez votre commentaire ici"></textarea>
+        <br><br>
+        <input type="text" name="prenom" placeholder="Prénom">
+        <input type="text" name="nom" placeholder="Nom">
+        <br><br>
+        <input type="submit" name="envoyer" value="Poster">
+    </form>
+    </div>
+    <?php
+                if($_POST) {
+        $_POST['content'] = addslashes($_POST['content']);
+        // J'envoie les informations dans la bdd 
+        $pdo->exec("INSERT INTO commentaire (id_post, prenom, nom, content, heure_message) VALUES ('$_POST[id_post]','$_POST[prenom]', '$_POST[nom]', '$_POST[content]', NOW())");
+    }
+
+    $c = $pdo->query("SELECT * FROM commentaire WHERE id_post = '$_GET[id_post]'");
+    $p = $pdo->query("SELECT * FROM post WHERE id_post = '$_GET[id_post]'");
+    $photo = $p->fetch(PDO::FETCH_ASSOC);
+    echo '<div class="zone-commentaire">';
+        while ($commentaire = $c->fetch(PDO::FETCH_ASSOC)) {
+                echo '<p>'. $commentaire['prenom'] . $commentaire['nom'] .' : ' . $commentaire['content'] . '</p>' ;
+        }
+    echo '</div>'
+    ?>
+
+                <div class="suggestions1"></div>    
+                <form method="post" class="add-commentaire">
+        <textarea name="content" id="content" placeholder="Laissez votre commentaire ici"></textarea>
+        <br><br>
+        <input type="text" name="prenom" placeholder="Prénom">
+        <input type="text" name="nom" placeholder="Nom">
+        <br><br>
+        <input type="submit" name="envoyer" value="Poster">
+    </form>
+
+    <br><br>
+
                 <div class="suggestions1"></div>
+                <form method="post" class="add-commentaire">
+        <textarea name="content" id="content" placeholder="Laissez votre commentaire ici"></textarea>
+        <br><br>
+        <input type="text" name="prenom" placeholder="Prénom">
+        <input type="text" name="nom" placeholder="Nom">
+        <br><br>
+        <input type="submit" name="envoyer" value="Poster">
+    </form>
+
+    <br><br>
+
                 <div class="suggestions1"></div>
-                <div class="suggestions1"></div>
-                <div class="suggestions1"></div>
+                <form method="post" class="add-commentaire">
+        <textarea name="content" id="content" placeholder="Laissez votre commentaire ici"></textarea>
+        <br><br>
+        <input type="text" name="prenom" placeholder="Prénom">
+        <input type="text" name="nom" placeholder="Nom">
+        <br><br>
+        <input type="submit" name="envoyer" value="Poster">
+    </form>
             </div>
             
     </section>

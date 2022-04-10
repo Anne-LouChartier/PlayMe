@@ -1,4 +1,3 @@
-
 header {
     display: flex;
     width: 100%;
@@ -102,4 +101,22 @@ body {
 
 .previousnext {
     height: 40%;
+}
+
+/* #suggestions {
+    width: 100%;
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+} */
+
+#suggestions {
+    width: 100%;
+    height: 25vh;
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+    overflow-x: scroll;
 }

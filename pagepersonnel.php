@@ -17,8 +17,8 @@ include('init.php');
 <header>
 <img src="Images/logoplayme.png" alt="logoPlayMe" id="logoPlayMe"> 
     <div>
-        <img src="Images/logoMessagerie2.png" alt="logoInbox" id="logoInbox">
-        <img src="Images/logoProfile2.png" alt="logoProfile" id="logoProfile">
+        <a href="messagerie.php"><img src="Images/logoMessagerie2.png" alt="logoInbox" id="logoInbox"></a>
+        <a href="pagepersonnel.php"><img src="Images/logoProfile2.png" alt="logoProfile" id="logoProfile"></a>
     </div>
     <form method="get">
         <div class="rubriques">
@@ -27,11 +27,11 @@ include('init.php');
         </div>
         </form>
 
-        <div class="Liens-header">
+        <!-- <div class="Liens-header">
             <a class="acceuil" href="pageacceuil.php">Retour Accueil</a>
             <a class="communaute" href="pagecommunaute.php">Communauté</a>
             <a class="messagerie" href="messagerie.php">Messagerie</a>
-        </div>
+        </div> -->
     
     </header>
 
@@ -74,9 +74,9 @@ include('init.php');
     <section id="fixe">
         <section id="gauche"></div>
             <div id="navgauche">
-                <p>ACCUEIL</p>
-                <p>COMMUNAUTE</p>
-                <p>PLAYLISTES</p>
+                <a href="pageacceuil.php"><p>ACCUEIL</p></a>
+                <a href="pagecommunaute.php"><p>COMMUNAUTE</p></a>
+                <a href="pageplaylist.php"><p>PLAYLISTES</p></a>
             </div>   
 
             <div id="currentmusic">
@@ -92,18 +92,25 @@ include('init.php');
         
         <section id="droite">
 
-            <form>
+            <form method="post">
                 <div>
-                <input type="text" id="uname" name="name" required size="45"
+                <input type="text" id="uname" name="post" required size="45"
                         placeholder="PARTAGER DU CONTENU..."
                         minlength="5" maxlength="300">
                 <span class="poster"></span>
                 </div>
                 <div>
-                <button>POSTER</button>
+                <input type="submit" name="poster">
                 </div>
             </form>
+<?php 
+if (isset($_POST['poster'])) {
+    $post = htmlspecialchars($_POST['post']);
+}
 
+
+
+?>
 
             <p class="titrepartie">POSTES</p>
 
