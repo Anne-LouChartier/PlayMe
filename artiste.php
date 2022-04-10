@@ -133,9 +133,6 @@ include('init.php');
                     00:00
                 </div>
             </div>
-            
-
-
         </section>
 
         <section id="droite2">

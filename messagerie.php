@@ -64,6 +64,24 @@ session_start();
         </div>
         </section>
 
+        <section id="droite2">
+                    <div id="miniaturemessagerie">
+                        <h2> DISCUSSIONS </h2>
+                        <div class="disc1"> LOLA </div>
+                        <div class="disc1"> FLORIAN </div>
+                        <div class="disc1"> ANNE-LOU</div>
+                        <div class="disc1"> CAMILLE </div>
+                        <div class="disc1"> SIMON </div>
+                        <div class="disc1"> OUSSMANE </div>
+                        <div class="disc1"> LOIC </div>
+                        <div class="disc1"> LOU </div>
+                        <div class="disc1"> ETIENNE </div>
+                        <div class="disc1"> TARIK </div>
+                        <div class="disc1"> THOMAS </div>
+                    </div>
+            </section>
+    </section>
+
     <?php
 
     $m = $pdo->query("SELECT * FROM messages WHERE prenom_envoyeur = '$_POST[prenom_envoyeur]' AND WHERE nom_envoyeur = '$_POST[nom_envoyeur]'");
@@ -80,20 +98,6 @@ session_start();
     }
     ?>
 
-        <section id="droite2">
-                    <div id="miniaturemessagerie">
-                        <h2> DISCUSSIONS </h2>
-                        <div class="disc1"> CONCERT AVEC MICHOU</div>
-                        <div class="disc1"> CONCERT AVEC MICHOU</div>
-                        <div class="disc1"> CONCERT AVEC MICHOU</div>
-                        <div class="disc1"> CONCERT AVEC MICHOU</div>
-                        <div class="disc1"> CONCERT AVEC MICHOU</div>
-                        <div class="disc1"> CONCERT AVEC MICHOU</div>
-                        <div class="disc1"> CONCERT AVEC MICHOU</div>
-                        <div class="disc1"> CONCERT AVEC MICHOU</div>
-                    </div>
-        </section>
-</section>
 
             <!-- <div id="publications">
                 <h2> PUBLICATIONS </h2>
