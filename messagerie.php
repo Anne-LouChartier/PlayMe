@@ -31,7 +31,7 @@ session_start();
     <section id="fixe">
         <section id="gauche"></div>
             <div id="navgauche">
-                <a href="pageacceuil/php"><p>ACCUEIL</p></a>
+                <a href="pageacceuil.php"><p>ACCUEIL</p></a>
                 <a href="pagecommunaute.php"><p>COMMUNAUTE</p></a>
                 <a href="pageplaylist.php"><p>PLAYLISTES</p></a>
             </div>  

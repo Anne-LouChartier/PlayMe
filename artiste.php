@@ -157,14 +157,8 @@ include('init.php');
                 <div class="publication1"> Le prochain son va vous gifler comme Will Smith la miff </div>
                 <div class="publication1"> Le prochain son va vous gifler comme Will Smith la miff </div>
                 <div class="publication1"> Le prochain son va vous gifler comme Will Smith la miff </div>
-                
             </div>
-
-
         </section>
-            
     </section>
 </body>
-
-
 </html>

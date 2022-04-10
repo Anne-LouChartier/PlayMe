@@ -13,7 +13,6 @@ include('init.php');
     <link rel="stylesheet" href="stylepageplaylist.css">
 </head>
 
-<body>
     <header>
     <img src="Images/logoplayme.png" alt="logoPlayMe" id="logoPlayMe"> 
     <div>
@@ -27,8 +26,6 @@ include('init.php');
             <input id="searchbutton" type="submit" name="donneerecherche" value="Rechercher">
         </div>
         </form>
-</header>
-
         <div id="overlay3">
 <section class="afficher_utilisateur">
     <?php 
@@ -46,9 +43,9 @@ include('init.php');
             if ($allusers->rowCount() > 0 XOR $allmusics->rowCount() > 0 XOR $allartists->rowCount() > 0) {
                 while ($user = $allusers->fetch() XOR $titrer = $allmusics->fetch() XOR $artister = $allartists->fetch()) {
                     ?>
-                    <div id="affichage_user"><p><?= $user['prenom'], $user['nom']; ?></p></div>
-                    <div id="affichage_musique"><p><?= $titrer['titre']; ?></p></div>
-                    <div id="affichage_artiste"><p><?= $artister['nom']; ?></p></div>
+                    <a href="pagepersonnel.php"><div id="affichage_user"><p><?= $user['prenom'], $user['nom']; ?></p></div></a>
+                    <a href="playlist.php"><div id="affichage_musique"><p><?= $titrer['titre']; ?></p></div>
+                    <a href="artiste.php"><div id="affichage_artiste"><p><?= $artister['nom']; ?></p></div></a>
                     <?php
                 }}        
         } elseif (empty($_POST['recherche'])) {
@@ -61,10 +58,110 @@ include('init.php');
         <?php
         }
     ?>
+</header>
 </section>
     </div>
+    <body>
 
-    ?>
+    <body>
+    <section id="fixe">
+        <section id="gauche"></div>
+            <div id="navgauche">
+                <p>ACCUEIL</p>
+                <p>COMMUNAUTE</p>
+                <p>PLAYLISTES</p>
+            </div>   
+
+            <div id="currentmusic">
+                <img src="Images/img1.jpg" alt="currentmusicimg">
+                <div id="currentmusicbarre">
+                    <img src="Images/boutonPrevious2.png" alt="logoprevious" class="previousnext">
+                    <img src="Images/boutonPlay2.png" alt="logoplay" id="logoplay">
+                    <img src="Images/boutonNext2.png" alt="logonext" class="previousnext">
+                </div>
+            </div>
+
+        </section>
+        
+        <section id="droite1">
+
+            <div id="banniereartiste">
+                <div id="pdpartiste"></div> 
+                <h1> MES PLAYLISTS </h1>
+            </div>
+
+            <div class="musique">
+                <img src="Images/boutonPlay2.png" alt="boutonplay">
+                <div class="titreettags">
+                    <h3>Daily Mix 1</h3>
+                    <h4> Chill </h4>
+                </div>
+                <div class="minute">
+                    03:42:27
+                </div>
+            </div>
+
+            <div class="musique">
+                <img src="Images/boutonPlay2.png" alt="boutonplay">
+                <div class="titreettags">
+                    <h3>Daily Mix 2</h3>
+                    <h4> Rap US </h4>
+                </div>
+                <div class="minute">
+                    03:02:08
+                </div>
+            </div>
+
+            <div class="musique">
+                <img src="Images/boutonPlay2.png" alt="boutonplay">
+                <div class="titreettags">
+                    <h3>Daily Mix 3</h3>
+                    <h4> House / Funk </h4>
+                </div>
+                <div class="minute">
+                07:09:12
+                </div>
+            </div>
+
+            <div class="musique">
+                <img src="Images/boutonPlay2.png" alt="boutonplay">
+                <div class="titreettags">
+                    <h3>Daily Mix 4</h3>
+                    <h4>tags tags tags tags </h4>
+                </div>
+                <div class="minute">
+                02:32:24
+                </div>
+            </div>
+        </section>
+
+        <section id="droite2">
+            <div id="event">
+                <h2> MES PLAYLISTS </h2>
+                <div class="playlist1"> Daily Mix 1 </div>
+                <div class="playlist1"> Daily Mix 2 </div>
+                <div class="playlist1"> Daily Mix 3 </div>
+                <div class="playlist1"> Daily Mix 4 </div>
+                <div class="playlist1"> Apéro </div>
+                <div class="playlist1"> Découvertes de la semaine </div>
+                <div class="playlist1"> Suggestions </div>
+                <div class="playlist1"> Radar sorties </div>
+            </div>
+
+            <div id="publications">
+                <h2> PUBLICATIONS </h2>
+                <div class="publication1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit dolorum quam excepturi eius, id doloribus soluta quo culpa voluptates. Recusandae ipsam non quam in blanditiis mollitia officiis ratione ut laboriosam.</div>
+                <div class="publication1"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque, sapiente! </div>
+                <div class="publication1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus fuga, rem sint omnis impedit harum distinctio quam laborum cumque saepe itaque voluptatibus minus minima iste ad, labore corrupti, facilis animi. </div>
+                <div class="publication1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus deserunt nostrum aperiam explicabo numquam commodi in soluta? Distinctio suscipit maxime, sed dolore laborum, quod mollitia, accusantium fugiat quaerat esse quas. </div>
+                <div class="publication1"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore! </div>
+                <div class="publication1"> Lorem ipsum dolor sit amet. </div>
+                <div class="publication1"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati culpa consectetur sed? Non voluptates deserunt quas nemo earum unde, exercitationem tenetur numquam adipisci, culpa, ut ea! Hic vel doloremque eius. </div>
+            </div>
+        </section>
+            
+    </section>
+
         <script src="js.js"></script>
 
 </body>
