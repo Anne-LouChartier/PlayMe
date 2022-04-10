@@ -15,8 +15,8 @@ include('init.php');
     <header>
     <img src="Images/logoplayme.png" alt="logoPlayMe" id="logoPlayMe"> 
     <div>
-        <img src="Images/logoMessagerie2.png" alt="logoInbox" id="logoInbox">
-        <img src="Images/logoProfile2.png" alt="logoProfile" id="logoProfile">
+    <a href="messagerie.php"><img src="Images/logoMessagerie2.png" alt="logoInbox" id="logoInbox"></a>
+        <a href="pagepersonnel.php"><img src="Images/logoProfile2.png" alt="logoProfile" id="logoProfile"></a>
     </div>
         <!-- <div class="Liens-header">
                     <a class="acceuil" href="pageacceuil.php">Acceuil</a>
@@ -68,7 +68,7 @@ include('init.php');
     <section id="fixe">
         <section id="gauche"></div>
             <div id="navgauche">
-                <a href="pageacceuil/php"><p>ACCUEIL</p></a>
+                <a href="pageacceuil.php"><p>ACCUEIL</p></a>
                 <a href="pagecommunaute.php"><p>COMMUNAUTE</p></a>
                 <a href="pageplaylist.php"><p>PLAYLISTES</p></a>
             </div>   
