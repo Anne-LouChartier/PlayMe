@@ -67,10 +67,10 @@ include('init.php');
     <section id="fixe">
         <section id="gauche"></div>
             <div id="navgauche">
-                <p>ACCUEIL</p>
-                <p>COMMUNAUTE</p>
-                <p>PLAYLISTES</p>
-            </div>   
+                <a href="pageacceuil.php"><p>ACCUEIL</p></a>
+                <a href="pagecommunaute.php"><p>COMMUNAUTE</p></a>
+                <a href="pageplaylist.php"><p>PLAYLISTES</p></a>
+            </div>  
 
             <div id="currentmusic">
                 <img src="Images/img1.jpg" alt="currentmusicimg">

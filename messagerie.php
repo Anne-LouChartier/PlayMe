@@ -3,6 +3,23 @@ include('init.php');
 session_start();
 ?>
 
+<?php
+if($_POST) {
+    if (isset($_POST['envoyer'])) {
+        if(!empty($_POST['prenom_receveur']) AND !empty($_POST['nom_receveur']) AND !empty($_POST['message']))) {
+            $prenomreceveur = htmlspecialchars($_POST['prenom_receveur']);
+            $nomreceveur = htmlspecialchars($_POST['nom_receveur']);
+            $message = htmlspecialchars($_POST['message']);
+            $date = date('m-d-Y h:i:s a', time());
+
+            $nvmessage = $pdo->prepare("INSERT INTO messages(prenom_receveur, nom_receveur, texte, date_envoie) VALUES (?, ?, ?, ?)");
+            $nvmessage->execute(array($prenomreceveur, $nomreceveur, $message, $date));
+        } else {
+            echo "Veuillez compléter tous les champs";
+        }
+    }?>
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +46,7 @@ session_start();
 
     <body>
     <section id="fixe">
-        <section id="gauche"></div>
+        <section id="gauche">
             <div id="navgauche">
                 <a href="pageacceuil.php"><p>ACCUEIL</p></a>
                 <a href="pagecommunaute.php"><p>COMMUNAUTE</p></a>
@@ -65,7 +82,6 @@ session_start();
         </section>
 
         <section id="droite2">
-                    <div id="miniaturemessagerie">
                         <h2> DISCUSSIONS </h2>
                         <div class="disc1"> LOLA </div>
                         <div class="disc1"> FLORIAN </div>
@@ -78,38 +94,7 @@ session_start();
                         <div class="disc1"> ETIENNE </div>
                         <div class="disc1"> TARIK </div>
                         <div class="disc1"> THOMAS </div>
-                    </div>
             </section>
-    </section>
-
-    <?php
-
-    $m = $pdo->query("SELECT * FROM messages WHERE prenom_envoyeur = '$_POST[prenom_envoyeur]' AND WHERE nom_envoyeur = '$_POST[nom_envoyeur]'");
-
-    if(isset($_POST)) {
-        $message = $m->fetch(PDO::FETCH_ASSOC);
-        $_POST['prenom_envoyeur'] = $message['prenom_envoyeur'];
-        $_POST['nom_envoyeur'] = $message['nom_envoyeur'];
-        $_POST['prenom_receveur'] = $message['prenom_receveur'];
-        $_POST['nom_receveur'] = $message['nom_receveur'];
-        $_POST['texte'] = $message['texte'];
-        $_POST['date_envoie'] = $message['date_envoie'];
-        $pdo -> exec("INSERT INTO messages (prenom_envoyeur, nom_envoyeur, prenom_receveur, nom_receveur, texte, date_envoie) VALUES ('$_POST[prenom_envoyeur]', '$_POST[nom_envoyeur]', md5('$_POST[prenom_receveur]'), '$_POST[nom_receveur]', '$_POST[texte]', '$_POST[date_envoie]')");
-    }
-    ?>
-
-
-            <!-- <div id="publications">
-                <h2> PUBLICATIONS </h2>
-                <div class="publication1"> Le prochain son va vous gifler comme Will Smith la miff </div>
-                <div class="publication1"> Le prochain son va vous gifler comme Will Smith la miff </div>
-                <div class="publication1"> Le prochain son va vous gifler comme Will Smith la miff </div>
-                <div class="publication1"> Le prochain son va vous gifler comme Will Smith la miff </div>
-                <div class="publication1"> Le prochain son va vous gifler comme Will Smith la miff </div>
-                <div class="publication1"> Le prochain son va vous gifler comme Will Smith la miff </div>
-                <div class="publication1"> Le prochain son va vous gifler comme Will Smith la miff </div>
-                
-            </div> -->
-
+</section>
 </body>
 </html>

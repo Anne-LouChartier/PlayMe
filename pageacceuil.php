@@ -33,33 +33,39 @@ if ($_POST) {
     if(empty($erreur)) {
         $pdo->exec("INSERT INTO abonnes (prenom, nom, mot_de_passe, email) VALUES ('$_POST[prenominscription]','$_POST[nominscription]','$_POST[mdpinscription]', '$_POST[emailinscription]')");
         $content = "Inscription validée !";
+    } else {
+        $content .= $erreur;   
     }
+    if(isset($_POST['connexion'])) {
+        $c = $pdo->query("SELECT * FROM abonnes WHERE email = '$_POST[emailconnexion]'");
 
-    $content .= $erreur;
-
-    if($_POST) {
-        $a = $pdo->query("SELECT * FROM abonnes WHERE email = '$_POST[emailconnexion]' ");
-    
-            if($a->rowCount() >= 1) {
-                $abonne = $a->fetch(PDO::FETCH_ASSOC);
-        
-                if(password_verify($_POST['mdpconnexion'], $abonne['mdpconnexion'])) {
-                    $content1 .= '<p>Email + MDP OK</p>';
-                    $_SESSION['id_abonne'] = $abonne['id_abonne'];
-                    $_SESSION['prenom'] = $abonne['prenom'];
-                    $_SESSION['nom'] = $abonne['nom'];
-                    $_SESSION['mdpconnexion'] = $abonne['mdpconnexion'];
-                    $_SESSION['email'] = $abonne['email'];
-                    header('location:acceuil.php');
-                } elseif (!password_verify($_POST['mdpconnexion'], $abonne['mdpconnexion'])){
-                    $content1 .= '<p>Mot de passe incorrecte</p>';
-                }
-            } else {
-                $content1 .= '<p>Email inexistant</p>';
-            }
+	// Si le nombre de résultat est plus grand ou égal à 1, alors le compte existe :
+	if($c->rowCount() >= 1) {
+		// Je stock toutes les infos sous forme d'array :
+		$membres = $c->fetch(PDO::FETCH_ASSOC);
+		// Je vérifie si j'ai bien toutes les infos dans l'array :
+		// print_r($membres);
+		// Si le mot de passe posté correspond à celui présent dans $membre :
+		if(password_verify($_POST['mdpconnexion'], $membres['mot_de_passe'])) {
+			// Je test si le mdp fonctionne :
+			$content .= '<p>email + MDP : OK</p>';
+			// J'enregistre les infos dans la session :
+            $_SESSION['membres']['id_abonne'] = $membres['id_abonne'];
+			$_SESSION['membres']['prenom'] = $membres['prenom'];
+			$_SESSION['membres']['nom'] = $membres['nom'];
+			$_SESSION['membres']['email'] = $membres['email'];
+			// Je redirige l'utilisateur vers la page d'accueil :
+			header('location:pagepersonnel.php');
+		} else {
+			// Le mot de passe est incorrect :
+			$content .= '<p>Mot de passe incorrect.</p>';
+		}
+	} else {
+		$content .= '<p>Compte inexistant</p>';
+	}
     }
-    
 }
+
 
 ?>
 
@@ -91,12 +97,6 @@ if ($_POST) {
             <input id="searchbutton" type="submit" name="donneerecherche" value="Rechercher">
         </div>
         </form>
-
-        <!-- <div class="Liens-header">
-            <a class="communaute" href="pagecommunaute.php">Communauté</a>
-            <a class="playlist" href="pageplaylist.php">Playlist / Bibliothèque</a> -->
-            <!-- <a class="messagerie" href="messagerie.php">Messagerie</a> -->
-        <!-- </div> -->
 </header>
 
 
@@ -119,7 +119,7 @@ if ($_POST) {
             <h2>Connexion <span id="btnClose2" class="btnClose2">&times;</span></h2>
             <input name="emailconnexion" type="email" placeholder="Votre e-mail">
             <input name="mdpconnexion" type="password" placeholder="Votre mot de passe">
-            <input type="submit" value="Se connecter">
+            <input name="connexion" type="submit" value="Se connecter">
         </div>
     </div>
 </form>
