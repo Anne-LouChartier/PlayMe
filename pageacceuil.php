@@ -39,25 +39,25 @@ if ($_POST) {
     if(isset($_POST['connexion'])) {
         $c = $pdo->query("SELECT * FROM abonnes WHERE email = '$_POST[emailconnexion]'");
 
-	// Si le nombre de résultat est plus grand ou égal à 1, alors le compte existe :
+// Si le nombre de résultat est plus grand ou égal à 1, alors le compte existe :
 	if($c->rowCount() >= 1) {
-		// Je stock toutes les infos sous forme d'array :
+// Je stock toutes les infos sous forme d'array :
 		$membres = $c->fetch(PDO::FETCH_ASSOC);
-		// Je vérifie si j'ai bien toutes les infos dans l'array :
-		// print_r($membres);
-		// Si le mot de passe posté correspond à celui présent dans $membre :
+// Je vérifie si j'ai bien toutes les infos dans l'array :
+// print_r($membres);
+// Si le mot de passe posté correspond à celui présent dans $membres :
 		if(password_verify($_POST['mdpconnexion'], $membres['mot_de_passe'])) {
-			// Je test si le mdp fonctionne :
+// Je test si le mdp fonctionne :
 			$content .= '<p>email + MDP : OK</p>';
-			// J'enregistre les infos dans la session :
+// J'enregistre les infos dans la session :
             $_SESSION['membres']['id_abonne'] = $membres['id_abonne'];
 			$_SESSION['membres']['prenom'] = $membres['prenom'];
 			$_SESSION['membres']['nom'] = $membres['nom'];
 			$_SESSION['membres']['email'] = $membres['email'];
-			// Je redirige l'utilisateur vers la page d'accueil :
+// Je redirige l'utilisateur vers sa page personnelle :
 			header('location:pagepersonnel.php');
 		} else {
-			// Le mot de passe est incorrect :
+// Le mot de passe est incorrect :
 			$content .= '<p>Mot de passe incorrect.</p>';
 		}
 	} else {
@@ -127,7 +127,7 @@ if ($_POST) {
 <div id="overlay3">
 <section class="afficher_utilisateur">
     <?php 
-
+// On vient sélectionner ici toutes les données présentent dans notre BDD (abonnes, morceaux et artistes) afin de permettre à l'utilisateur d'effectuer une recherche dans le champs recherche.
         $allusers = $pdo->query("SELECT * FROM abonnes ORDER BY prenom DESC");
         $allmusics = $pdo->query("SELECT * FROM morceaux");
         $allartists = $pdo->query("SELECT * FROM artistes");
@@ -170,36 +170,220 @@ if ($_POST) {
             </div>   
 
             <div id="currentmusic">
+            <audio id="audioPlayer" src="Musiques/rap_eoz.mp4"></audio>
+            <audio id="audioPlayer2" src="Musiques/rap_romain.mp4"></audio>
                 <img src="Images/img1.jpg" alt="currentmusicimg">
                 <div id="currentmusicbarre">
-                    <img src="Images/boutonPrevious2.png" alt="logoprevious" class="previousnext">
+                    <img src="Images/boutonPrevious2.png" alt="logoprevious" class="previousnext" id="previous">
                     <img src="Images/boutonPlay2.png" alt="logoplay" id="logoplay">
-                    <img src="Images/boutonNext2.png" alt="logonext" class="previousnext">
+                    <img src="Images/boutonNext2.png" alt="logonext" class="previousnext" id="next">
                 </div>
             </div>
 
         </section>
         
         <section id="droite">
-            <?php 
-            echo $_SESSION['id_abonne'];
-            ?>
+            
             <p class="titrepartie">NOUVEAUTES</p>
 
             <div id="nouveautes">
-                <div class="nouveautes1"></div>
-                <div class="nouveautes1"></div>
-                <div class="nouveautes1"></div>
-                <div class="nouveautes1"></div>
+                <div class="affichagecover">
+                <div class="nouveautes1">
+                    <a href="artiste.php"><img src="Images/1.png" width="150px" height="150px" alt="cover1"></a>
+                </div>
+                    <div class="rubriquescommentaires">
+                        <form method="post" class="add-commentaire">
+                        <br><br>                           
+                        <input type="submit" name="jaime" value="J'aime">
+                        <input type="submit" name="ajoutplaylist" value="Add">
+                        </form>
+                    </div>
+                    </div>
+                    <?php
+// On vient ici récupérer les informations like et ajout de playlist via la méthode post, afin d'incrémenter la BDD avec nos données 
+// Si le bouton j'aime ou ajout playlist est 'activé' par l'utilisateurs alors on vient insérer les données dans la BDD likes.
+                    if(isset($_POST['jaime'])) {
+                    $l = $pdo->query("SELECT * FROM likes");
+                    $like = $l->fetch(PDO::FETCH_ASSOC);
+                    $id_abonne = $_SESSION['membres']['id_abonne'];
+                    $pdo->exec("INSERT INTO likes (id_suiveur, id_post) VALUES ($id_abonne, '')");
+                    } 
+                    ?>
+                
+                <div class="affichagecover">
+                <div class="nouveautes1">
+                    <img src="Images/2.png" width="150px" height="150px" alt="cover2">
+                </div>
+                    <div class="rubriquescommentaires">
+                        <form method="post" class="add-commentaire">
+                        <br><br>                           
+                        <input type="submit" name="jaime1" value="J'aime">
+                        <input type="submit" name="ajoutplaylist1" value="Add">
+                        </form>
+                    </div>
+                </div>
+                    <?php
+// On vient ici récupérer les informations like et ajout de playlist via la méthode post, afin d'incrémenter la BDD avec nos données 
+// Si le bouton j'aime ou ajout playlist est 'activé' par l'utilisateurs alors on vient insérer les données dans la BDD likes.
+                    if(isset($_POST['jaime1'])) {
+                    $l1 = $pdo->query("SELECT * FROM likes");
+                    $like1 = $l->fetch(PDO::FETCH_ASSOC);
+                    $id_abonne1 = $_SESSION['membres']['id_abonne'];
+                    $pdo->exec("INSERT INTO likes (id_suiveur, id_post) VALUES ($id_abonne1, '')");
+                    } 
+                    ?>
+
+
+                <div class="affichagecover">
+                <div class="nouveautes1">
+                    <img src="Images/3.png" width="150px" height="150px" alt="cover3">
+                </div>
+                    <div class="rubriquescommentaires">
+                        <form method="post" class="add-commentaire">
+                        <br><br>                           
+                        <input type="submit" name="jaime2" value="J'aime">
+                        <input type="submit" name="ajoutplaylist2" value="Add">
+                        </form>
+                    </div>
+                </div>
+                    <?php
+// On vient ici récupérer les informations like et ajout de playlist via la méthode post, afin d'incrémenter la BDD avec nos données 
+// Si le bouton j'aime ou ajoout playlist est 'activé' par l'utilisateurs alors on vient insérer les données dans la BDD likes.
+                    if(isset($_POST['jaime2'])) {
+                    $l2 = $pdo->query("SELECT * FROM likes");
+                    $like2 = $l2->fetch(PDO::FETCH_ASSOC);
+                    $id_abonne2 = $_SESSION['membres']['id_abonne'];
+                    $pdo->exec("INSERT INTO likes (id_suiveur, id_post) VALUES ($id_abonne2, '')");
+                    } 
+                    ?>
+
+                <div class="affichagecover">
+                <div class="nouveautes1">
+                    <img src="Images/4.png" width="150px" height="150px" alt="cover4">
+                </div>
+                    <div class="rubriquescommentaires">
+                        <form method="post" class="add-commentaire">
+                        <br><br>                           
+                        <input type="submit" name="jaime3" value="J'aime">
+                        <input type="submit" name="ajoutplaylist3" value="Add">
+                        </form>
+                    </div>
+                </div>
+                </div>
+                <?php
+// On vient ici récupérer les informations like et ajout de playlist via la méthode post, afin d'incrémenter la BDD avec nos données 
+// Si le bouton j'aime ou ajoout playlist est 'activé' par l'utilisateurs alors on vient insérer les données dans la BDD likes.
+                    if(isset($_POST['jaime3'])) {
+                    $l3 = $pdo->query("SELECT * FROM likes");
+                    $like3 = $l3->fetch(PDO::FETCH_ASSOC);
+                    $id_abonne3 = $_SESSION['membres']['id_abonne'];
+                    $pdo->exec("INSERT INTO likes (id_suiveur, id_post) VALUES ($id_abonne3, '')");
+                    } 
+                    ?>
+
             </div>
 
             <p class="titrepartie">SUGGESTIONS</p>
 
             <div id="suggestions">
-                <div class="suggestions1"></div>
-                <div class="suggestions1"></div>
-                <div class="suggestions1"></div>
-                <div class="suggestions1"></div>
+                
+                <div class="affichagecover">
+                    <div class="suggestions1">
+                    <img src="Images/4.png" width="150px" height="150px" alt="cover5">
+                </div>
+                <div class="rubriquescommentaires">
+                        <form method="post" class="add-commentaire">
+                        <br><br>                           
+                        <input type="submit" name="jaime4" value="J'aime">
+                        <input type="submit" name="ajoutplaylist4" value="Add">
+                        </form>
+                    </div>
+                </div>
+
+                    <?php
+// On vient ici récupérer les informations like et ajout de playlist via la méthode post, afin d'incrémenter la BDD avec nos données 
+// Si le bouton j'aime ou ajoout playlist est 'activé' par l'utilisateurs alors on vient insérer les données dans la BDD likes.
+                    if(isset($_POST['jaime4'])) {
+                    $l4 = $pdo->query("SELECT * FROM likes");
+                    $like4 = $l4->fetch(PDO::FETCH_ASSOC);
+                    $id_abonne4 = $_SESSION['membres']['id_abonne'];
+                    $pdo->exec("INSERT INTO likes (id_suiveur, id_post) VALUES ($id_abonne4, '')");
+                    } 
+                    ?>
+
+
+                <div class="affichagecover">
+                <div class="suggestions1">
+                    <img src="Images/3.png" width="150px" height="150px" alt="cover6">
+                </div>
+                <div class="rubriquescommentaires">
+                        <form method="post" class="add-commentaire">
+                        <br><br>                           
+                        <input type="submit" name="jaime5" value="J'aime">
+                        <input type="submit" name="ajoutplaylist5" value="Add">
+                        </form>
+                    </div>
+                </div>
+
+                    <?php
+// On vient ici récupérer les informations like et ajout de playlist via la méthode post, afin d'incrémenter la BDD avec nos données 
+// Si le bouton j'aime ou ajoout playlist est 'activé' par l'utilisateurs alors on vient insérer les données dans la BDD likes.
+                    if(isset($_POST['jaime5'])) {
+                    $l5 = $pdo->query("SELECT * FROM likes");
+                    $like5 = $l5->fetch(PDO::FETCH_ASSOC);
+                    $id_abonne5 = $_SESSION['membres']['id_abonne'];
+                    $pdo->exec("INSERT INTO likes (id_suiveur, id_post) VALUES ($id_abonne5, '')");
+                    } 
+                    ?>
+
+                <div class="affichagecover">
+                <div class="suggestions1">
+                    <img src="Images/2.png" width="150px" height="150px" alt="cover7">
+                </div>
+                <div class="rubriquescommentaires">
+                        <form method="post" class="add-commentaire">
+                        <br><br>                           
+                        <input type="submit" name="jaime6" value="J'aime">
+                        <input type="submit" name="ajoutplaylist6" value="Add">
+                        </form>
+                    </div>
+                </div>
+
+                    <?php
+// On vient ici récupérer les informations like et ajout de playlist via la méthode post, afin d'incrémenter la BDD avec nos données 
+// Si le bouton j'aime ou ajoout playlist est 'activé' par l'utilisateurs alors on vient insérer les données dans la BDD likes.
+                    if(isset($_POST['jaime6'])) {
+                    $l6 = $pdo->query("SELECT * FROM likes");
+                    $like6 = $l6->fetch(PDO::FETCH_ASSOC);
+                    $id_abonne6 = $_SESSION['membres']['id_abonne'];
+                    $pdo->exec("INSERT INTO likes (id_suiveur, id_post) VALUES ($id_abonne6, '')");
+                    } 
+                    ?>
+
+                <div class="affichagecover">
+                <div class="suggestions1">
+                    <img src="Images/1.png" width="150px" height="150px" alt="cover8">
+                </div>
+                <div class="rubriquescommentaires">
+                        <form method="post" class="add-commentaire">
+                        <br><br>                           
+                        <input type="submit" name="jaime7" value="J'aime">
+                        <input type="submit" name="ajoutplaylist7" value="Add">
+                        </form>
+                    </div>
+                </div>
+
+                    <?php
+// On vient ici récupérer les informations like et ajout de playlist via la méthode post, afin d'incrémenter la BDD avec nos données 
+// Si le bouton j'aime ou ajoout playlist est 'activé' par l'utilisateurs alors on vient insérer les données dans la BDD likes.
+                    if(isset($_POST['jaime7'])) {
+                    $l7 = $pdo->query("SELECT * FROM likes");
+                    $like7 = $l7->fetch(PDO::FETCH_ASSOC);
+                    $id_abonne7 = $_SESSION['membres']['id_abonne'];
+                    $pdo->exec("INSERT INTO likes (id_suiveur, id_post) VALUES ($id_abonne7, '')");
+                    } 
+                    ?>
+
             </div>
             
     </section>

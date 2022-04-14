@@ -3,23 +3,6 @@ include('init.php');
 session_start();
 ?>
 
-<?php
-if($_POST) {
-    if (isset($_POST['envoyer'])) {
-        if(!empty($_POST['prenom_receveur']) AND !empty($_POST['nom_receveur']) AND !empty($_POST['message']))) {
-            $prenomreceveur = htmlspecialchars($_POST['prenom_receveur']);
-            $nomreceveur = htmlspecialchars($_POST['nom_receveur']);
-            $message = htmlspecialchars($_POST['message']);
-            $date = date('m-d-Y h:i:s a', time());
-
-            $nvmessage = $pdo->prepare("INSERT INTO messages(prenom_receveur, nom_receveur, texte, date_envoie) VALUES (?, ?, ?, ?)");
-            $nvmessage->execute(array($prenomreceveur, $nomreceveur, $message, $date));
-        } else {
-            echo "Veuillez compléter tous les champs";
-        }
-    }?>
-}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,36 +48,68 @@ if($_POST) {
 
     <br><br>
 
-            <section id="messageriegauche">
-                <div id="messagerie">
-            <form method="post" class="messagerie">
-                <input type="text" name="prenom_receveur" placeholder="Prénom destinataire">
-                <input type="text" name="nom_receveur" placeholder="Nom destinataire">
-                <br><br>
-                <textarea name="message" id="content" placeholder="Ecrivez votre message ici"></textarea>
-                <br><br>
-                <input type="text" name="prenom_envoyeur" placeholder="Prénom">
-                <input type="text" name="nom_envoyeur" placeholder="Nom">
-                <br><br>
-                <input type="submit" name="envoyer" value="Envoyer">
-            </form>
-        </div>
-        </section>
-
         <section id="droite2">
-                        <h2> DISCUSSIONS </h2>
-                        <div class="disc1"> LOLA </div>
-                        <div class="disc1"> FLORIAN </div>
-                        <div class="disc1"> ANNE-LOU</div>
-                        <div class="disc1"> CAMILLE </div>
-                        <div class="disc1"> SIMON </div>
-                        <div class="disc1"> OUSSMANE </div>
-                        <div class="disc1"> LOIC </div>
-                        <div class="disc1"> LOU </div>
-                        <div class="disc1"> ETIENNE </div>
-                        <div class="disc1"> TARIK </div>
-                        <div class="disc1"> THOMAS </div>
+    <div id="overlay4" class="overlay4">
+        <div id="popupmessage" class="popupmessage">
+            <h2 class="titremess">Messagerie <span id="btnClosemess" class="btnClosemess">&times;</span></h2>
+            <form method="post" id="messagerie">
+                <div class="conversation">
+                    <div class="question"><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam quisquam alias animi? Cupiditate temporibus reprehenderit facere tempora tempore harum, odit quasi? Molestias excepturi saepe, quidem aperiam quas in maxime quo! </p></div>
+                    <br><br>
+                    <div class="reponse"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, dicta!</p></div>
+                    <br><br>
+                    <div class="question"><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam quisquam alias animi? Cupiditate temporibus reprehenderit facere tempora tempore harum, odit quasi? Molestias excepturi saepe, quidem aperiam quas in maxime quo! </p></div>
+                    <br><br>
+                    <div class="reponse"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, dicta!</p></div>
+                    </div>
+
+                    <form method="post">
+        <textarea name="message" id="content" placeholder="Ecrivez votre message ici"></textarea>
+                <br><br>
+                <input type="submit" id="envoyermsg" name="envoyermsg" value="Envoyer">
+            </form>
+            <div class="chat-messages"></div>
+        </div>
+
+        <?php
+    if(isset($_POST['envoyermsg'])) {
+            $mess = $pdo->query("SELECT * FROM messages");
+            $message = $mess->fetch(PDO::FETCH_ASSOC);
+            $id_envoyeur = $_SESSION['membres']['id_abonne'];
+			$_SESSION['membres']['message'] = $message['texte'];
+                if(!empty($_POST['message'])) {
+                        $pdo->exec("INSERT INTO messages (id_envoyeur, id_receveur, texte) VALUES ($id_envoyeur, '24', '$_POST[message]')");                
+                }
+        } ?>
+
+        </div>
+    </div>
+</form>
+                            <h2 class="disc"> DISCUSSIONS </h2>
+                        <div id="discussions">
+                        <div class="disc1"><input id="btnLola" type="submit" value="LOLA"> 
+                            <p class="histodis"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam quisquam alias animi? Cupiditate temporibus reprehenderit facere tempora tempore harum, odit quasi? Molestias excepturi saepe, quidem aperiam quas in maxime quo!</p>
+                        </div>
+                        <div class="disc1"><input type="submit" value="FLORIAN">  
+                            <p class="histodis"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, doloremque.</p>
+                        </div>
+                        <div class="disc1"><input type="submit" value="ANNE-LOU"> 
+                            <p class="histodis"> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus deleniti cum vitae dignissimos vel sapiente enim molestiae hic?</p>
+                        </div>
+                        <div class="disc1"><input type="submit" value="CAMILLE">  
+                            <p class="histodis"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et corrupti perspiciatis corporis similique molestiae.</p>
+                        </div>
+                        <div class="disc1"><input type="submit" value="SIMON">  
+                        <p class="histodis"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam quisquam alias animi? Cupiditate temporibus reprehenderit facere tempora tempore harum, odit quasi? Molestias excepturi saepe, quidem aperiam quas in maxime quo!</p>
+                        </div>
+                        <div class="disc1"><input type="submit" value="OUSSMANE">  
+                            <p class="histodis"> Lorem, ipsum dolor sit amet consectetur adipisicing.</p>
+                        </div>
+    </div>
             </section>
 </section>
+
+<script src="messagerie.js"></script>
+
 </body>
 </html>

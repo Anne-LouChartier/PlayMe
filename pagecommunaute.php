@@ -80,17 +80,22 @@ session_start();
             </div>
 
         </section>
-        
+
         <section id="droite">
            
-            <p class="titrepartie">POSTS</p>
-
             <div id="posts">
-                <div class="posts"></div>
+                <div class="posts">
+                    <img src="Images/4.png" width="120px" height="120px" alt="cover5">
+                    <div class="rubriquepublication">
+                    <p class="titrepublication"></p>
+                    <p class="contenupublication">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae nostrum dolores, veniam dolorum harum corporis vero illum voluptatibus consequuntur! Esse officiis eos velit expedita, atque eligendi eum laboriosam quam minima.</p>
+                    <p class="datepublication">Date de publication : </p>
+                    </div>
+                </div>
                 <div class="suggestions1">
     <form method="post" class="add-commentaire">
         <textarea type="text" name="content" id="content" placeholder="Laissez votre commentaire ici"></textarea>
-        <br><br>
+        <?php echo $_POST['content'];  ?>
         <input type="submit" name="envoyer" value="Poster">
     </form>
     <?php
@@ -100,16 +105,23 @@ session_start();
             $id_envoyeur = $_SESSION['membres']['id_abonne'];
 			$_SESSION['membres']['commentaire'] = $commentaires['content'];
                 if(!empty($_POST['content'])) {
-                        $pdo->exec("INSERT INTO commentaire (id_envoyeur, content) VALUES ($id_envoyeur, '$_POST[content]')");                
+                        $pdo->exec("INSERT INTO commentaire (id_envoyeur, content) VALUES ($id_envoyeur, '$_POST[content]')");
                 }
         } ?>
     </div>
 
-                <div class="posts"></div>
+                <div class="posts">
+                <img src="Images/3.png" width="120px" height="120px" alt="cover5">
+                <div class="rubriquepublication">
+                    <p class="titrepublication"></p>
+                    <p class="contenupublication">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae nostrum dolores, veniam dolorum harum corporis vero illum voluptatibus consequuntur! Esse officiis eos velit expedita, atque eligendi eum laboriosam quam minima.</p>
+                    <p class="datepublication">Date de publication : </p>
+                </div>
+                </div>
                 <div class="suggestions1">
     <form method="post" class="add-commentaire">
     <textarea type="text" name="content1" id="content" placeholder="Laissez votre commentaire ici"></textarea>
-        <br><br>
+        <?php echo $_POST['content1'];  ?>                            
         <input type="submit" name="envoyer1" value="Poster">
     </form>
     <?php
@@ -119,16 +131,23 @@ session_start();
             $id_envoyeur1 = $_SESSION['membres']['id_abonne'];
 			$_SESSION['membres']['content1'] = $commentaires['content'];
                 if(!empty($_POST['content1'])) {
-                        $pdo->exec("INSERT INTO commentaire (id_envoyeur, content) VALUES ($id_envoyeur, '$_POST[content1]')");                
+                        $pdo->exec("INSERT INTO commentaire (id_envoyeur, content) VALUES ($id_envoyeur, '$_POST[content1]')");
                 }
         } ?>
     </div>
 
-                <div class="posts"></div>
+                <div class="posts">
+                <img src="Images/2.png" width="120px" height="120px" alt="cover5">
+                    <div class="rubriquepublication">
+                    <p class="titrepublication"></p>
+                    <p class="contenupublication">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae nostrum dolores, veniam dolorum harum corporis vero illum voluptatibus consequuntur! Esse officiis eos velit expedita, atque eligendi eum laboriosam quam minima.</p>
+                    <p class="datepublication">Date de publication : </p>
+    </div>
+                </div>
                 <div class="suggestions1">    
                 <form method="post" class="add-commentaire">
                 <textarea name="content2" type="text" id="content" placeholder="Laissez votre commentaire ici"></textarea>
-        <br><br>
+        <?php echo $_POST['content2'];  ?>                            
         <input type="submit" name="envoyer2" value="Poster">
     </form>
     <?php
@@ -143,11 +162,19 @@ session_start();
         } ?>
 
     </div>
-                <div class="posts"></div>
+                <div class="posts">
+                <img src="Images/1.png" width="120px" height="120px" alt="cover5">
+                <div class="rubriquepublication">
+                    <p class="titrepublication"></p>
+                    <p class="contenupublication">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae nostrum dolores, veniam dolorum harum corporis vero illum voluptatibus consequuntur! Esse officiis eos velit expedita, atque eligendi eum laboriosam quam minima.</p>
+                    <p class="datepublication">Date de publication : </p>
+    </div>
+                </div>
                 <div class="suggestions1">
                 <form method="post" class="add-commentaire">
         <textarea name="content3" id="content" placeholder="Laissez votre commentaire ici"></textarea>
         <br><br>
+        <?php echo $_POST['content3'];  ?>                            
         <input type="submit" name="envoyer3" value="Poster">
     </form>
     <?php

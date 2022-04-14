@@ -1,10 +1,7 @@
-<?php
+<?php 
 include('init.php');
 ?>
 
-<?php 
-// PAGE ARTISTE INDIVIDUELLE
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,19 +13,19 @@ include('init.php');
     <link rel="stylesheet" href="styleArtiste.css">
 </head>
 
-<header>
+    <header>
     <img src="Images/logoplayme.png" alt="logoPlayMe" id="logoPlayMe"> 
     <div>
-        <img src="Images/logoMessagerie2.png" alt="logoInbox" id="logoInbox">
-        <img src="Images/logoProfile2.png" alt="logoProfile" id="logoProfile">
+        <a href="messagerie.php"><img src="Images/logoMessagerie2.png" alt="logoInbox" id="logoInbox"></a>
+        <a href="pagepersonnel.php"><img src="Images/logoProfile2.png" alt="logoProfile" id="logoProfile"></a>
     </div>
+    
     <form method="get">
         <div class="rubriques">
-            <input id="recherchemult" type="text" name="recherche" placeholder="Rechercher" autocomplete="off">
+            <input id="recherchemult" type="search" name="recherche" placeholder="Rechercher" autocomplete="off">
             <input id="searchbutton" type="submit" name="donneerecherche" value="Rechercher">
         </div>
         </form>
-
         <div id="overlay3">
 <section class="afficher_utilisateur">
     <?php 
@@ -62,9 +59,12 @@ include('init.php');
         }
     ?>
 </header>
+</section>
+    </div>
+    <body>
 
-<body>
-<section id="fixe">
+    <body>
+    <section id="fixe">
         <section id="gauche"></div>
             <div id="navgauche">
                 <a href="pageacceuil.php"><p>ACCUEIL</p></a>
@@ -87,78 +87,125 @@ include('init.php');
 
             <div id="banniereartiste">
                 <div id="pdpartiste"></div> 
-                <h1> NOM ARTISTE </h1>
+                <div class="abonnements">
+                <h1> FLOOW </h1>
+                <input id="abonnement" type="submit" value="S'abonner">
+                <br><br>
+            </div>
+            </div>
+
+            <br><br>
+            <p class="soustitre">Dernières sorties</p>
+
+            <div class="musique">
+                <img src="Images/boutonPlay2.png" alt="boutonplay">
+                <div class="titreettags">
+                    <h3>Nom album 1</h3>
+                    <h4> 02/04/22 </h4>
+                </div>
+                <div class="minute">
+                    03:27
+                </div>
+            </div>
+    
+
+            <div class="musique">
+                <img src="Images/boutonPlay2.png" alt="boutonplay">
+                <div class="titreettags">
+                    <h3>Nom album 2</h3>
+                </div>
+                <div class="minute">
+                    04:08
+                </div>
             </div>
 
             <div class="musique">
                 <img src="Images/boutonPlay2.png" alt="boutonplay">
                 <div class="titreettags">
-                    <h3>TITRE</h3>
-                    <h4>tags tags tags tags </h4>
+                    <h3>Nom album 3</h3>
                 </div>
                 <div class="minute">
-                    00:00
+                05:12
                 </div>
             </div>
 
             <div class="musique">
                 <img src="Images/boutonPlay2.png" alt="boutonplay">
                 <div class="titreettags">
-                    <h3>TITRE</h3>
-                    <h4>tags tags tags tags </h4>
+                    <h3>Nom album 4</h3>
                 </div>
                 <div class="minute">
-                    00:00
-                </div>
-            </div>
-
-            <div class="musique">
-                <img src="Images/boutonPlay2.png" alt="boutonplay">
-                <div class="titreettags">
-                    <h3>TITRE</h3>
-                    <h4>tags tags tags tags </h4>
-                </div>
-                <div class="minute">
-                    00:00
-                </div>
-            </div>
-
-            <div class="musique">
-                <img src="Images/boutonPlay2.png" alt="boutonplay">
-                <div class="titreettags">
-                    <h3>TITRE</h3>
-                    <h4>tags tags tags tags </h4>
-                </div>
-                <div class="minute">
-                    00:00
+                03:24
                 </div>
             </div>
         </section>
 
         <section id="droite2">
             <div id="event">
-                <h2> EVÈNEMENT </h2>
-                <div class="event1"> CONCERT AVEC MICHOU</div>
-                <div class="event1"> CONCERT AVEC MICHOU</div>
-                <div class="event1"> CONCERT AVEC MICHOU</div>
-                <div class="event1"> CONCERT AVEC MICHOU</div>
-                <div class="event1"> CONCERT AVEC MICHOU</div>
-                <div class="event1"> CONCERT AVEC MICHOU</div>
-                <div class="event1"> CONCERT AVEC MICHOU</div>
-                <div class="event1"> CONCERT AVEC MICHOU</div>
+                <h2 class="sectiona"> PLAYLISTS LIKEES PAR L'ARTISTE </h2>
+
+                <div class="playlist1">
+                    <figure>
+                <figcaption>Daily Mix 1</figcaption>
+                <audio
+                    controls
+                    src="Musiques/rap_eoz.mp4">
+                    Your browser does not support the
+                    <code>audio</code> element.
+                </audio>
+                </figure>
+                </div>
+
+                <div class="playlist1">
+                <figure>
+                <figcaption>Daily Mix 2</figcaption>
+                <audio
+                    controls
+                    src="Musiques/rap_romain.mp4">
+                    Your browser does not support the
+                    <code>audio</code> element.
+                </audio>
+                </figure>
+                </div>
+
+                <div class="playlist1"> 
+                <figure>
+                <figcaption>Daily Mix 3</figcaption>
+                <audio
+                    controls
+                    src="Musiques/rap_romain.mp4">
+                    Your browser does not support the
+                    <code>audio</code> element.
+                </audio>
+                </figure>
+
+                </div>
+                <div class="playlist1"> 
+                <figure>
+                <figcaption>Daily Mix 4</figcaption>
+                <audio
+                    controls
+                    src="Musiques/rap_romain.mp4">
+                    Your browser does not support the
+                    <code>audio</code> element.
+                </audio>
+                </figure>
+                </div>
             </div>
 
             <div id="publications">
-                <h2> PUBLICATIONS </h2>
-                <div class="publication1"> Le prochain son va vous gifler comme Will Smith la miff </div>
-                <div class="publication1"> Le prochain son va vous gifler comme Will Smith la miff </div>
-                <div class="publication1"> Le prochain son va vous gifler comme Will Smith la miff </div>
-                <div class="publication1"> Le prochain son va vous gifler comme Will Smith la miff </div>
-                <div class="publication1"> Le prochain son va vous gifler comme Will Smith la miff </div>
-                <div class="publication1"> Le prochain son va vous gifler comme Will Smith la miff </div>
-                <div class="publication1"> Le prochain son va vous gifler comme Will Smith la miff </div>
+                <h2 class="sectiona"> PUBLICATIONS DE FLOOW </h2>
+                <div class="publication1"> Nouvel album la famille!!!</div>
+                <div class="publication1"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque, sapiente! </div>
+                <div class="publication1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus fuga, rem sint omnis impedit harum distinctio quam laborum cumque saepe itaque voluptatibus minus minima iste ad, labore corrupti, facilis animi. </div>
+                <div class="publication1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus deserunt nostrum aperiam explicabo numquam commodi in soluta? Distinctio suscipit maxime, sed dolore laborum, quod mollitia, accusantium fugiat quaerat esse quas. </div>
+                <div class="publication1"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore! </div>
+                <div class="publication1"> Lorem ipsum dolor sit amet. </div>
+                <div class="publication1"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati culpa consectetur sed? Non voluptates deserunt quas nemo earum unde, exercitationem tenetur numquam adipisci, culpa, ut ea! Hic vel doloremque eius. </div>
             </div>
         </section>
+            
     </section>
 </body>
+
 </html>

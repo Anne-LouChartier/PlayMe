@@ -138,14 +138,54 @@ include('init.php');
         <section id="droite2">
             <div id="event">
                 <h2> MES PLAYLISTS </h2>
-                <div class="playlist1"> Daily Mix 1 </div>
-                <div class="playlist1"> Daily Mix 2 </div>
-                <div class="playlist1"> Daily Mix 3 </div>
-                <div class="playlist1"> Daily Mix 4 </div>
-                <div class="playlist1"> Apéro </div>
-                <div class="playlist1"> Découvertes de la semaine </div>
-                <div class="playlist1"> Suggestions </div>
-                <div class="playlist1"> Radar sorties </div>
+
+                <div class="playlist1">
+                    <figure>
+                <figcaption>Daily Mix 1</figcaption>
+                <audio
+                    controls
+                    src="Musiques/rap_eoz.mp4">
+                    Your browser does not support the
+                    <code>audio</code> element.
+                </audio>
+                </figure>
+                </div>
+
+                <div class="playlist1">
+                <figure>
+                <figcaption>Daily Mix 2</figcaption>
+                <audio
+                    controls
+                    src="Musiques/rap_romain.mp4">
+                    Your browser does not support the
+                    <code>audio</code> element.
+                </audio>
+                </figure>
+                </div>
+
+                <div class="playlist1"> 
+                <figure>
+                <figcaption>Daily Mix 3</figcaption>
+                <audio
+                    controls
+                    src="Musiques/rap_romain.mp4">
+                    Your browser does not support the
+                    <code>audio</code> element.
+                </audio>
+                </figure>
+
+                </div>
+                <div class="playlist1"> 
+                <figure>
+                <figcaption>Daily Mix 4</figcaption>
+                <audio
+                    controls
+                    src="Musiques/rap_romain.mp4">
+                    Your browser does not support the
+                    <code>audio</code> element.
+                </audio>
+                </figure>
+                </div>
             </div>
 
             <div id="publications">
@@ -162,7 +202,8 @@ include('init.php');
             
     </section>
 
-        <script src="js.js"></script>
+    
+    <script src="js.js"></script>
 
 </body>
 
